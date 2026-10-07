@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["summary", "findings", "checks"],
+  "properties": {
+    "summary": {"type": "string"},
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "severity", "axis", "location", "problem", "evidence", "suggested_check"],
+        "properties": {
+          "id": {"type": "string"},
+          "severity": {"type": "string", "enum": ["critical", "major", "minor"]},
+          "axis": {"type": "string", "enum": ["spec", "standards", "both"]},
+          "location": {"type": "string"},
+          "problem": {"type": "string"},
+          "evidence": {"type": "string"},
+          "suggested_check": {"type": "string"}
+        }
+      }
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["command", "outcome", "evidence", "purpose"],
+        "properties": {
+          "command": {"type": "string"},
+          "outcome": {"type": "string", "enum": ["pass", "fail", "uncertain"]},
+          "evidence": {"type": "string"},
+          "purpose": {"type": "string", "enum": ["acceptance", "exploration"]}
+        }
+      }
+    }
+  }
+}
